@@ -1,10 +1,32 @@
-![PowerFox](https://github.com/user-attachments/assets/35623fd8-1887-4976-ae16-cf85ca800a8c)
+# PowerFox for Tiger
 
-<img src="https://powerfox.jazzzny.me/assets/img/2026-01-28-powerfox-ppc.jpg" alt="PowerFox screenshot" style="max-width: 400px;">
+A port of [PowerFox](https://github.com/Jazzzny/powerfox-browser) to **Mac OS X 10.4 Tiger** on **PowerPC G5**.
 
-PowerFox is a secure, modern, and open-source web browser for Mac OS X 10.6 Snow Leopard and 10.5 Leopard, based on the open-source UXP browser engine and Basilisk browser codebases.
+PowerFox is a modern, open-source web browser based on the UXP engine and Basilisk browser. The original targets 10.5 Leopard and 10.6 Snow Leopard — this fork aims to bring it to Tiger.
 
-For more information, visit the [PowerFox website](https://powerfox.jazzzny.me).
+## Status
+
+**Work in progress.** The build compiles but is not yet producing a working browser.
+
+## What's different from upstream
+
+- Targets `powerpc-apple-darwin8` (Tiger) instead of Leopard/Snow Leopard
+- Cross-compiled from Linux using GCC 7.5.0 with a custom toolchain:
+  - Assembly fixup pipeline for Darwin PPC compatibility
+  - SSH-proxied linking on a real Tiger Mac
+  - 10.4 universal SDK
+- See `mozconfig` on the `tiger-ppc` branch for build configuration
+
+## Building
+
+This is cross-compiled from Linux — it cannot be built natively on Tiger. Requires:
+- GCC 7.5.0 cross-compiler targeting `powerpc-apple-darwin8`
+- cctools-port (assembler, ar, ranlib)
+- MacOSX10.4u.sdk
+- A Tiger Mac accessible via SSH (for native linking)
 
 ## Credits
-PowerFox wouldn't be possible without the Basilisk and UXP teams for their incredible work on the underlying browser code, TenFourFox for various parts of legacy Mac OS X support code, and many UXP contributors who have worked on the Mac code, including but not limited to dbsoft and WolfReiser. Thank you!
+
+- [Jazzzny](https://github.com/Jazzzny) for PowerFox
+- Basilisk and UXP teams for the browser engine
+- TenFourFox for legacy Mac OS X support code
