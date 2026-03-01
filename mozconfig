@@ -24,8 +24,8 @@ export HOST_CC=gcc
 export HOST_CXX=g++
 
 # SDK/prefix flags
-export CFLAGS="-mcpu=970 -I$CROSS_PREFIX/include -isysroot $CROSS_SDK"
-export CXXFLAGS="-mcpu=970 -I$CROSS_PREFIX/include -isysroot $CROSS_SDK"
+export CFLAGS="-mcpu=970 -D_DARWIN_C_SOURCE -include /mnt/media/claude_cross/toolchain/include/tiger-compat.h -I$CROSS_PREFIX/include -isysroot $CROSS_SDK"
+export CXXFLAGS="-mcpu=970 -D_DARWIN_C_SOURCE -include /mnt/media/claude_cross/toolchain/include/tiger-compat.h -I$CROSS_PREFIX/include -isysroot $CROSS_SDK"
 export LDFLAGS="-L$CROSS_PREFIX/lib -Wl,-syslibroot,$CROSS_SDK"
 
 # Application
