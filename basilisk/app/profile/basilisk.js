@@ -429,7 +429,7 @@ pref("browser.tabs.allowTabDetach", true);
 
 // Whether to fade tab labels instead of using ellipses when cutting off
 // long page titles.
-pref("browser.tabs.fadeLabels", true);
+pref("browser.tabs.fadeLabels", false);
 
 pref("browser.ctrlTab.previews", false);
 
