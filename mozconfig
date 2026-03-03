@@ -1,18 +1,19 @@
 # PowerFox Tiger PPC cross-compile mozconfig
+# Uses GCC 15 + ld64 pipeline (fully local, no SSH)
 mk_add_options MOZ_OBJDIR=@TOPSRCDIR@/obj-ppc-tiger
 
 CROSS_PREFIX=/mnt/media/claude_cross/ppc-prefix
 CROSS_TOOLCHAIN=/mnt/media/claude_cross/toolchain/bin
-CROSS_SDK=/mnt/media/claude_cross/sdks/MacOSX10.4u.sdk
+CROSS_SDK=/mnt/media/claude_cross/sdk_extract/macosx104/SDKs/MacOSX10.4u.sdk
 
 # Cross-compile target
 ac_add_options --target=powerpc-apple-darwin8
 ac_add_options --with-macos-sdk=$CROSS_SDK
 ac_add_options --enable-macos-target=10.4
 
-# Compilers
-export CC="$CROSS_TOOLCHAIN/ppc-tiger-gcc"
-export CXX="$CROSS_TOOLCHAIN/ppc-tiger-g++"
+# Compilers — GCC 15 + ld64 (fully local, no SSH needed)
+export CC="$CROSS_TOOLCHAIN/ppc-ld64-gcc"
+export CXX="$CROSS_TOOLCHAIN/ppc-ld64-g++"
 export CPP="$CC -E"
 export AR="$CROSS_TOOLCHAIN/powerpc-apple-darwin8-ar"
 export RANLIB="$CROSS_TOOLCHAIN/powerpc-apple-darwin8-ranlib"
@@ -23,10 +24,11 @@ export TOOLCHAIN_PREFIX="$CROSS_TOOLCHAIN/powerpc-apple-darwin8-"
 export HOST_CC=gcc
 export HOST_CXX=g++
 
-# SDK/prefix flags
-export CFLAGS="-mcpu=970 -D_DARWIN_C_SOURCE -include /mnt/media/claude_cross/toolchain/include/tiger-compat.h -I$CROSS_PREFIX/include -isysroot $CROSS_SDK"
-export CXXFLAGS="-mcpu=970 -D_DARWIN_C_SOURCE -include /mnt/media/claude_cross/toolchain/include/tiger-compat.h -I$CROSS_PREFIX/include -isysroot $CROSS_SDK"
-export LDFLAGS="-L$CROSS_PREFIX/lib -Wl,-syslibroot,$CROSS_SDK"
+# SDK/prefix flags — G3 compatible (runs on any PPC Mac)
+# Note: -isysroot is handled by the ld64 wrapper internally
+export CFLAGS="-mcpu=G3 -D_DARWIN_C_SOURCE -DU_HAVE_TIMEZONE=0 -include /mnt/media/claude_cross/toolchain/include/tiger-compat.h -I$CROSS_PREFIX/include"
+export CXXFLAGS="-mcpu=G3 -D_DARWIN_C_SOURCE -DU_HAVE_TIMEZONE=0 -include /mnt/media/claude_cross/toolchain/include/tiger-compat.h -I$CROSS_PREFIX/include"
+export LDFLAGS="-L$CROSS_PREFIX/lib"
 
 # Application
 ac_add_options --enable-application=basilisk
@@ -39,7 +41,7 @@ ac_add_options --disable-crashreporter
 ac_add_options --disable-updater
 ac_add_options --disable-tests
 ac_add_options --disable-debug
-ac_add_options --enable-optimize="-O2 -mcpu=970"
+ac_add_options --enable-optimize="-O2 -mcpu=G3"
 ac_add_options --disable-jemalloc
 ac_add_options --disable-sandbox
 ac_add_options --disable-apple-media
@@ -47,3 +49,6 @@ ac_add_options --disable-apple-media
 # Static build
 ac_add_options --enable-default-toolkit=cairo-cocoa
 ac_add_options --disable-shared-js
+
+# PowerFox branding
+ac_add_options --with-branding=basilisk/branding/powerfox

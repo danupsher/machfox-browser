@@ -2538,6 +2538,19 @@ toolbarbutton.chevron > .toolbarbutton-menu-dropmarker {
   -moz-appearance: toolbar;
 }
 
+/* Tiger PPC: tabsintitlebar chromemargin does not correctly render the
+   title bar background, leaving the tab bar dark/transparent. Always apply
+   toolbar appearance regardless of tabsintitlebar state.
+   !important needed to override inline styles set by tabsintitlebar JS. */
+#main-window[tabsintitlebar] #navigator-toolbox > #TabsToolbar:not(:-moz-lwtheme) {
+  -moz-appearance: toolbar !important;
+  background-color: -moz-dialog !important;
+}
+
+#titlebar {
+  background-color: -moz-dialog !important;
+}
+
 #TabsToolbar:not(:-moz-lwtheme) {
   color: var(--tabs-toolbar-color);
   text-shadow: @loweredShadow@;
@@ -3138,4 +3151,50 @@ toolbarbutton.chevron > .toolbarbutton-menu-dropmarker {
 
 .webextension-popup-browser {
   border-radius: inherit;
+}
+
+/* Tiger PPC: tab and toolbar rendering fixes for Mac OS X 10.4 */
+
+/* Fix back button: remove SVG clip-path that Tiger cannot render */
+window:not([chromehidden~="toolbar"]) #urlbar-wrapper {
+  clip-path: none !important;
+}
+
+/* Override native toolbar appearance that covers tab content on Tiger */
+#TabsToolbar {
+  -moz-appearance: none !important;
+  background-color: #c8c8c8 !important;
+  min-height: 30px !important;
+}
+
+/* Give selected tab a visible solid background */
+.tab-background-middle[selected=true] {
+  background-color: #e8e8e8 !important;
+  background-image: none !important;
+}
+
+/* Ensure tab has enough width for text */
+.tabbrowser-tab {
+  min-width: 150px !important;
+}
+
+.tab-content {
+  color: #111 !important;
+  min-width: 100px !important;
+}
+
+/* Invisible spacer forces tab-content hbox to expand to fill tab width */
+.tab-content::after {
+  content: "\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0" !important;
+  color: transparent !important;
+  -moz-box-flex: 1 !important;
+}
+
+/* Ensure tab label text is visible */
+.tab-label {
+  color: #111 !important;
+  opacity: 1 !important;
+  font-size: 13px !important;
+  -moz-box-flex: 1 !important;
+  min-width: 50px !important;
 }
