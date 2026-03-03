@@ -1,32 +1,53 @@
-# PowerFox for Tiger
+# PowerFox Tiger
 
 A port of [PowerFox](https://github.com/Jazzzny/powerfox-browser) to **Mac OS X 10.4 Tiger** on **PowerPC G5**.
 
-PowerFox is a modern, open-source web browser based on the UXP engine and Basilisk browser. The original targets 10.5 Leopard and 10.6 Snow Leopard — this fork aims to bring it to Tiger.
+PowerFox is a modern, open-source web browser based on the UXP engine and Basilisk browser. The original targets 10.5 Leopard and 10.6 Snow Leopard — this fork brings it to Tiger with full GPU-accelerated compositing.
 
-## Status
+## Features
 
-**Work in progress.** The build compiles but is not yet producing a working browser.
+- **GPU-accelerated compositing** via CompositorOGL on the ATI Radeon 9600 (OpenGL 1.5)
+- **OMTC (Off-Main-Thread Compositing)** — compositing runs on a separate thread, freeing the CPU for JavaScript, layout, and video decode
+- **GLSL 1.05 compatible shaders** — constant-index workarounds for variable array indexing limitations
+- Modern web browsing on vintage Tiger PPC hardware
+
+## Hardware Tested
+
+| Spec | Value |
+|------|-------|
+| Machine | iMac G5 (PowerMac8,2) |
+| CPU | PowerPC G5 2.0 GHz |
+| RAM | 1 GB |
+| GPU | ATI Radeon 9600, 128 MB VRAM |
+| Display | 1680x1050 |
+| OS | Mac OS X 10.4.11 Tiger |
+
+## Download
+
+See [Releases](https://github.com/danupsher/powerfox-tiger/releases) for pre-built application bundles.
 
 ## What's different from upstream
 
 - Targets `powerpc-apple-darwin8` (Tiger) instead of Leopard/Snow Leopard
-- Cross-compiled from Linux using GCC 7.5.0 with a custom toolchain:
-  - Assembly fixup pipeline for Darwin PPC compatibility
-  - SSH-proxied linking on a real Tiger Mac
-  - 10.4 universal SDK
-- See `mozconfig` on the `tiger-ppc` branch for build configuration
+- Cross-compiled from Linux using GCC 15 with ld64-linux linker
+- GPU compositing fixes for GLSL 1.05 / OpenGL 1.5 (Radeon 9600)
+- GL context view attachment timing fix for Tiger's compositor thread
+- Opaque GL surface for Tiger (no rounded window corners)
+- Cairo font rendering fixes for Tiger
+- 10.4 universal SDK
 
 ## Building
 
-This is cross-compiled from Linux — it cannot be built natively on Tiger. Requires:
-- GCC 7.5.0 cross-compiler targeting `powerpc-apple-darwin8`
+Cross-compiled from Linux — requires:
+- [GCC 15 cross-compiler](https://github.com/danupsher/tiger-ppc-builds) targeting `powerpc-apple-darwin8`
+- ld64-linux (Mach-O linker for Linux)
 - cctools-port (assembler, ar, ranlib)
 - MacOSX10.4u.sdk
-- A Tiger Mac accessible via SSH (for native linking)
+
+See `mozconfig` on the `tiger-ppc` branch for build configuration.
 
 ## Credits
 
 - [Jazzzny](https://github.com/Jazzzny) for PowerFox
 - Basilisk and UXP teams for the browser engine
-- TenFourFox for legacy Mac OS X support code
+- TenFourFox for legacy Mac OS X support inspiration
