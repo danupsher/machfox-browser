@@ -9,7 +9,12 @@ PowerFox is a modern, open-source web browser based on the UXP engine and Basili
 - **GPU-accelerated compositing** via CompositorOGL on the ATI Radeon 9600 (OpenGL 1.5)
 - **OMTC (Off-Main-Thread Compositing)** — compositing runs on a separate thread, freeing the CPU for JavaScript, layout, and video decode
 - **GLSL 1.05 compatible shaders** — constant-index workarounds for variable array indexing limitations
+- **Scroll fix for non-NPOT GPUs** — disables buffer rotation to prevent black bars on GPUs that lack non-power-of-two texture support
 - Modern web browsing on vintage Tiger PPC hardware
+
+## Download
+
+**[Latest release: v1.2](https://github.com/danupsher/powerfox-tiger/releases/tag/v1.2)** — DMG and tarball available.
 
 ## Hardware Tested
 
@@ -22,16 +27,21 @@ PowerFox is a modern, open-source web browser based on the UXP engine and Basili
 | Display | 1680x1050 |
 | OS | Mac OS X 10.4.11 Tiger |
 
-## Download
+## Release History
 
-See [Releases](https://github.com/danupsher/powerfox-tiger/releases) for pre-built application bundles.
+| Version | Date | Highlights |
+|---------|------|-----------|
+| **v1.2** | 2026-03-03 | Fixed scroll black bars (buffer rotation + NPOT padding), cleaned up diagnostic hacks |
+| **v1.1** | 2026-03-03 | GPU-accelerated compositing (CompositorOGL + OMTC), GLSL 1.05 shaders, opaque GL surface |
+| **v1.0** | 2026-03-02 | Initial Tiger port — Cairo fonts, CSS fixes, PowerFox branding |
 
-## What's different from upstream
+## What is different from upstream
 
 - Targets `powerpc-apple-darwin8` (Tiger) instead of Leopard/Snow Leopard
 - Cross-compiled from Linux using GCC 15 with ld64-linux linker
 - GPU compositing fixes for GLSL 1.05 / OpenGL 1.5 (Radeon 9600)
-- GL context view attachment timing fix for Tiger's compositor thread
+- Buffer rotation disabled for non-NPOT GPUs (fixes scroll black bars)
+- GL context view attachment timing fix for Tiger compositor thread
 - Opaque GL surface for Tiger (no rounded window corners)
 - Cairo font rendering fixes for Tiger
 - 10.4 universal SDK
