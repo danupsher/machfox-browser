@@ -61,6 +61,6 @@ See `mozconfig` on the `tiger-ppc` branch for build configuration.
 
 ## Credits
 
-- [Jazzzny](https://github.com/Jazzzny) for the original Tiger/PPC porting work
+- [Jazzzny](https://github.com/Jazzzny) for PowerFox (Leopard/Snow Leopard)
 - Basilisk and UXP teams for the browser engine
 - TenFourFox for legacy Mac OS X support inspiration
