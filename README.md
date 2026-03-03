@@ -1,6 +1,6 @@
 # PowerFox Tiger
 
-A port of [PowerFox](https://github.com/Jazzzny/powerfox-browser) to **Mac OS X 10.4 Tiger** on **PowerPC G5**.
+A port of [PowerFox](https://github.com/Jazzzny/powerfox-browser) to **Mac OS X 10.4 Tiger** on **PowerPC** (G3/G4/G5).
 
 PowerFox is a modern, open-source web browser based on the UXP engine and Basilisk browser. The original targets 10.5 Leopard and 10.6 Snow Leopard — this fork brings it to Tiger with full GPU-accelerated compositing.
 
@@ -42,7 +42,7 @@ PowerFox is a modern, open-source web browser based on the UXP engine and Basili
 - Cross-compiled from Linux using GCC 15 with ld64-linux linker
 - GPU compositing fixes for GLSL 1.05 / OpenGL 1.5 (Radeon 9600)
 - Buffer rotation disabled for non-NPOT GPUs (fixes scroll black bars)
-- FBO intermediate surfaces disabled (fixes Y-flip on video content)
+- FBO intermediate surfaces disabled (fixes Y-flip / inverted content on pages using FBOs)
 - GL context view attachment timing fix for Tiger compositor thread
 - Opaque GL surface for Tiger (no rounded window corners)
 - Cairo font rendering fixes for Tiger
