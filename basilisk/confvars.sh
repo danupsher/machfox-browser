@@ -3,8 +3,8 @@
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
-MOZ_APP_BASENAME=PowerFox
-MOZ_APP_VENDOR=Jazzzny
+MOZ_APP_BASENAME=Basilisk
+MOZ_APP_VENDOR=
 MOZ_PHOENIX=1
 MOZ_AUSTRALIS=1
 MC_BASILISK=1

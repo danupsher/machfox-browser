@@ -1,4 +1,4 @@
-# PowerFox Tiger PPC cross-compile mozconfig
+# Tiger PPC cross-compile mozconfig
 # Uses GCC 15 + ld64 pipeline (fully local, no SSH)
 mk_add_options MOZ_OBJDIR=@TOPSRCDIR@/obj-ppc-tiger
 
@@ -50,5 +50,5 @@ ac_add_options --disable-apple-media
 ac_add_options --enable-default-toolkit=cairo-cocoa
 ac_add_options --disable-shared-js
 
-# PowerFox branding
-ac_add_options --with-branding=basilisk/branding/powerfox
+# Unofficial branding
+ac_add_options --with-branding=basilisk/branding/unofficial

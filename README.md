@@ -1,8 +1,8 @@
-# PowerFox Tiger
+# Nightly Tiger Browser
 
-A port of [PowerFox](https://github.com/Jazzzny/powerfox-browser) to **Mac OS X 10.4 Tiger** on **PowerPC** (G3/G4/G5).
+A port of the [UXP](https://github.com/ArcticFoxie/ArcticFox)/[Basilisk](https://www.basilisk-browser.org/) browser engine to **Mac OS X 10.4 Tiger** on **PowerPC** (G3/G4/G5).
 
-PowerFox is a modern, open-source web browser based on the UXP engine and Basilisk browser. The original targets 10.5 Leopard and 10.6 Snow Leopard — this fork brings it to Tiger with full GPU-accelerated compositing.
+This is an unofficial build with full GPU-accelerated compositing, targeting vintage Tiger PPC hardware.
 
 ## Features
 
@@ -14,7 +14,7 @@ PowerFox is a modern, open-source web browser based on the UXP engine and Basili
 
 ## Download
 
-**[Latest release: v1.3](https://github.com/danupsher/powerfox-tiger/releases/tag/v1.3)** — DMG and tarball available.
+**[Latest release: v2.0](https://github.com/danupsher/powerfox-tiger/releases/tag/v2.0)** — DMG and tarball available.
 
 ## Hardware Tested
 
@@ -31,10 +31,11 @@ PowerFox is a modern, open-source web browser based on the UXP engine and Basili
 
 | Version | Date | Highlights |
 |---------|------|-----------|
+| **v2.0** | 2026-03-03 | Rebranded to Nightly (unofficial branding), fresh release |
 | **v1.3** | 2026-03-03 | Fixed tab text showing middle of title instead of beginning |
 | **v1.2** | 2026-03-03 | Fixed scroll black bars (buffer rotation + NPOT padding), fixed FBO Y-flip on YouTube |
 | **v1.1** | 2026-03-03 | GPU-accelerated compositing (CompositorOGL + OMTC), GLSL 1.05 shaders, opaque GL surface |
-| **v1.0** | 2026-03-02 | Initial Tiger port — Cairo fonts, CSS fixes, PowerFox branding |
+| **v1.0** | 2026-03-02 | Initial Tiger port — Cairo fonts, CSS fixes |
 
 ## What is different from upstream
 
@@ -60,6 +61,5 @@ See `mozconfig` on the `tiger-ppc` branch for build configuration.
 
 ## Credits
 
-- [Jazzzny](https://github.com/Jazzzny) for PowerFox
 - Basilisk and UXP teams for the browser engine
 - TenFourFox for legacy Mac OS X support inspiration
