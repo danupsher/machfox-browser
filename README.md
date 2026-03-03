@@ -14,7 +14,7 @@ This is an unofficial build with full GPU-accelerated compositing, targeting vin
 
 ## Download
 
-**[Latest release: v2.0](https://github.com/danupsher/powerfox-tiger/releases/tag/v2.0)** — DMG and tarball available.
+**[Latest release: v2.0](https://github.com/danupsher/nightly-tiger-browser/releases/tag/v2.0)** — DMG and tarball available.
 
 ## Hardware Tested
 
