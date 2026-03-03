@@ -14,7 +14,7 @@ PowerFox is a modern, open-source web browser based on the UXP engine and Basili
 
 ## Download
 
-**[Latest release: v1.2](https://github.com/danupsher/powerfox-tiger/releases/tag/v1.2)** — DMG and tarball available.
+**[Latest release: v1.3](https://github.com/danupsher/powerfox-tiger/releases/tag/v1.3)** — DMG and tarball available.
 
 ## Hardware Tested
 
@@ -31,6 +31,7 @@ PowerFox is a modern, open-source web browser based on the UXP engine and Basili
 
 | Version | Date | Highlights |
 |---------|------|-----------|
+| **v1.3** | 2026-03-03 | Fixed tab text showing middle of title instead of beginning |
 | **v1.2** | 2026-03-03 | Fixed scroll black bars (buffer rotation + NPOT padding), fixed FBO Y-flip on YouTube |
 | **v1.1** | 2026-03-03 | GPU-accelerated compositing (CompositorOGL + OMTC), GLSL 1.05 shaders, opaque GL surface |
 | **v1.0** | 2026-03-02 | Initial Tiger port — Cairo fonts, CSS fixes, PowerFox branding |
