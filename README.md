@@ -9,7 +9,7 @@ PowerFox is a modern, open-source web browser based on the UXP engine and Basili
 - **GPU-accelerated compositing** via CompositorOGL on the ATI Radeon 9600 (OpenGL 1.5)
 - **OMTC (Off-Main-Thread Compositing)** — compositing runs on a separate thread, freeing the CPU for JavaScript, layout, and video decode
 - **GLSL 1.05 compatible shaders** — constant-index workarounds for variable array indexing limitations
-- **Scroll fix for non-NPOT GPUs** — disables buffer rotation to prevent black bars on GPUs that lack non-power-of-two texture support
+- **Non-NPOT GPU fixes** — buffer rotation disabled to prevent scroll black bars on GPUs without non-power-of-two texture support; FBO intermediate surfaces disabled to prevent Y-flip artifacts
 - Modern web browsing on vintage Tiger PPC hardware
 
 ## Download
@@ -31,7 +31,7 @@ PowerFox is a modern, open-source web browser based on the UXP engine and Basili
 
 | Version | Date | Highlights |
 |---------|------|-----------|
-| **v1.2** | 2026-03-03 | Fixed scroll black bars (buffer rotation + NPOT padding), cleaned up diagnostic hacks |
+| **v1.2** | 2026-03-03 | Fixed scroll black bars (buffer rotation + NPOT padding), fixed FBO Y-flip on YouTube |
 | **v1.1** | 2026-03-03 | GPU-accelerated compositing (CompositorOGL + OMTC), GLSL 1.05 shaders, opaque GL surface |
 | **v1.0** | 2026-03-02 | Initial Tiger port — Cairo fonts, CSS fixes, PowerFox branding |
 
@@ -41,6 +41,7 @@ PowerFox is a modern, open-source web browser based on the UXP engine and Basili
 - Cross-compiled from Linux using GCC 15 with ld64-linux linker
 - GPU compositing fixes for GLSL 1.05 / OpenGL 1.5 (Radeon 9600)
 - Buffer rotation disabled for non-NPOT GPUs (fixes scroll black bars)
+- FBO intermediate surfaces disabled (fixes Y-flip on video content)
 - GL context view attachment timing fix for Tiger compositor thread
 - Opaque GL surface for Tiger (no rounded window corners)
 - Cairo font rendering fixes for Tiger
