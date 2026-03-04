@@ -407,7 +407,7 @@ pref("browser.tabs.animate", true);
 #ifdef UNIX_BUT_NOT_MAC
 pref("browser.tabs.drawInTitlebar", false);
 #else
-pref("browser.tabs.drawInTitlebar", false);
+pref("browser.tabs.drawInTitlebar", true);
 #endif
 
 // When tabs opened by links in other tabs via a combination of

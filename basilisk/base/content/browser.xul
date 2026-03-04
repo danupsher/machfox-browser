@@ -47,8 +47,10 @@
 #ifdef MOZ_CAN_DRAW_IN_TITLEBAR
 #ifdef XP_WIN
         chromemargin="0,2,2,2"
-        tabsintitlebar="true"
+#else
+        chromemargin="0,-1,-1,-1"
 #endif
+        tabsintitlebar="true"
 #endif
         titlemenuseparator="&mainWindow.titlemodifiermenuseparator;"
         lightweightthemes="true"
