@@ -45,7 +45,7 @@ Built on the [UXP](https://github.com/ArcticFoxie/ArcticFox)/[Basilisk](https://
 ## Building
 
 Cross-compiled from Linux — requires:
-- [GCC 15 + ld64 cross-compiler](https://github.com/danupsher/tiger-ppc-builds/releases/tag/gcc15-xcompiler-1.2) targeting `powerpc-apple-darwin8`
+- [GCC 15 + ld64 cross-compiler](https://github.com/danupsher/tiger-ppc-builds/releases/tag/gcc15-xcompiler-1.3) targeting `powerpc-apple-darwin8`
 - cctools-port (assembler, ar, ranlib)
 - MacOSX10.4u.sdk
 
