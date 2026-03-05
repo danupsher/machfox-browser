@@ -66,7 +66,7 @@ MOZ_GAMEPAD=1
 MOZ_AV1=1
 MOZ_SECURITY_SQLSTORE=1
 
-if test "$OS_ARCH" = "WINNT" -o \
-        "$OS_ARCH" = "Darwin"; then
+# MOZ_CAN_DRAW_IN_TITLEBAR disabled for Darwin (Tiger 10.4 compat)
+if test "$OS_ARCH" = "WINNT"; then
   MOZ_CAN_DRAW_IN_TITLEBAR=1
 fi
