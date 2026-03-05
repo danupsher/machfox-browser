@@ -1,20 +1,21 @@
-# Nightly Tiger Browser
+# MachFox
 
-A port of the [UXP](https://github.com/ArcticFoxie/ArcticFox)/[Basilisk](https://www.basilisk-browser.org/) browser engine to **Mac OS X 10.4 Tiger** on **PowerPC** (G3/G4/G5).
+A modern web browser for **Mac OS X 10.4 Tiger** on **PowerPC** (G3/G4/G5).
 
-This is an unofficial build with full GPU-accelerated compositing, targeting vintage Tiger PPC hardware.
+Built on the [UXP](https://github.com/ArcticFoxie/ArcticFox)/[Basilisk](https://www.basilisk-browser.org/) engine, cross-compiled from Linux using GCC 15 + ld64.
 
 ## Features
 
-- **GPU-accelerated compositing** via CompositorOGL on the ATI Radeon 9600 (OpenGL 1.5)
-- **OMTC (Off-Main-Thread Compositing)** — compositing runs on a separate thread, freeing the CPU for JavaScript, layout, and video decode
-- **GLSL 1.05 compatible shaders** — constant-index workarounds for variable array indexing limitations
-- **Non-NPOT GPU fixes** — buffer rotation disabled to prevent scroll black bars on GPUs without non-power-of-two texture support; FBO intermediate surfaces disabled to prevent Y-flip artifacts
-- Modern web browsing on vintage Tiger PPC hardware
+- **GPU-accelerated compositing** via CompositorOGL (OpenGL 1.5)
+- **OMTC (Off-Main-Thread Compositing)** for smoother UI
+- **GLSL 1.05 compatible shaders** with constant-index workarounds
+- **Non-NPOT GPU fixes** — buffer rotation and FBO workarounds for vintage GPUs
+- **G3/G4/G5 compatible** — runs on any PowerPC Mac with Tiger
+- Modern web standards on vintage hardware
 
 ## Download
 
-**[Latest release: v2.0](https://github.com/danupsher/nightly-tiger-browser/releases/tag/v2.0)** — DMG and tarball available.
+**[Latest release](https://github.com/danupsher/machfox-browser/releases)** — DMG and tarball available.
 
 ## Hardware Tested
 
@@ -27,33 +28,24 @@ This is an unofficial build with full GPU-accelerated compositing, targeting vin
 | Display | 1680x1050 |
 | OS | Mac OS X 10.4.11 Tiger |
 
-## Release History
-
-| Version | Date | Highlights |
-|---------|------|-----------|
-| **v2.0** | 2026-03-03 | Rebranded to Nightly (unofficial branding), fresh release |
-| **v1.3** | 2026-03-03 | Fixed tab text showing middle of title instead of beginning |
-| **v1.2** | 2026-03-03 | Fixed scroll black bars (buffer rotation + NPOT padding), fixed FBO Y-flip on YouTube |
-| **v1.1** | 2026-03-03 | GPU-accelerated compositing (CompositorOGL + OMTC), GLSL 1.05 shaders, opaque GL surface |
-| **v1.0** | 2026-03-02 | Initial Tiger port — Cairo fonts, CSS fixes |
-
 ## What is different from upstream
 
 - Targets `powerpc-apple-darwin8` (Tiger) instead of Leopard/Snow Leopard
-- Cross-compiled from Linux using GCC 15 with ld64-linux linker
+- Cross-compiled from Linux using GCC 15.2.0 with ld64-linux linker
 - GPU compositing fixes for GLSL 1.05 / OpenGL 1.5 (Radeon 9600)
 - Buffer rotation disabled for non-NPOT GPUs (fixes scroll black bars)
-- FBO intermediate surfaces disabled (fixes Y-flip / inverted content on pages using FBOs)
+- FBO intermediate surfaces disabled (fixes Y-flip / inverted content)
 - GL context view attachment timing fix for Tiger compositor thread
 - Opaque GL surface for Tiger (no rounded window corners)
 - Cairo font rendering fixes for Tiger
-- 10.4 universal SDK
+- Smooth scrolling disabled by default (better performance on slow hardware)
+- MachFox branding with OpenMoji globe icon
+- 10.4 universal SDK, `-force_cpusubtype_ALL` for G3/G4/G5 compatibility
 
 ## Building
 
 Cross-compiled from Linux — requires:
-- [GCC 15 cross-compiler](https://github.com/danupsher/tiger-ppc-builds) targeting `powerpc-apple-darwin8`
-- ld64-linux (Mach-O linker for Linux)
+- [GCC 15 + ld64 cross-compiler](https://github.com/danupsher/tiger-ppc-builds/releases/tag/gcc15-xcompiler-1.2) targeting `powerpc-apple-darwin8`
 - cctools-port (assembler, ar, ranlib)
 - MacOSX10.4u.sdk
 
@@ -64,3 +56,4 @@ See `mozconfig` on the `tiger-ppc` branch for build configuration.
 - [Jazzzny](https://github.com/Jazzzny) for PowerFox (Leopard/Snow Leopard)
 - Basilisk and UXP teams for the browser engine
 - TenFourFox for legacy Mac OS X support inspiration
+- [OpenMoji](https://openmoji.org/) for the globe icon (CC BY-SA 4.0)
