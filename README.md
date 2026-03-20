@@ -6,8 +6,8 @@ Built on the [UXP](https://github.com/ArcticFoxie/ArcticFox)/[Basilisk](https://
 
 ## Features
 
-- **Full Ion JIT** — optimizing JavaScript compiler for PPC with all optimizations enabled (GVN, inlining, PGO, range analysis, OSR)
-- **Baseline JIT** — fast JavaScript compilation with 15+ PPC-specific fixes
+- **Baseline JIT for all web content** — all JavaScript gets JIT-compiled with 15+ PPC-specific fixes
+- **Ion JIT** — optimizing compiler for internal scripts (GVN, inlining, PGO, range analysis, OSR)
 - **Native regexp** — JIT-compiled regular expressions with big-endian fix
 - **H.264 video playback** via ffvpx with PPC AltiVec SIMD — 720p on iMac G5
 - **YouTube works** — homepage loads fully, videos play
@@ -15,7 +15,7 @@ Built on the [UXP](https://github.com/ArcticFoxie/ArcticFox)/[Basilisk](https://
 - **OMTC (Off-Main-Thread Compositing)** for smoother UI
 - **GLSL 1.05 compatible shaders** with constant-index workarounds
 - **Non-NPOT GPU fixes** — buffer rotation and FBO workarounds for vintage GPUs
-- **G3/G4/G5 compatible** — runs on any PowerPC Mac with Tiger
+- **G5 tested** — current release tested on iMac G5; G3/G4 builds available in older releases
 
 ## Download
 
@@ -44,6 +44,8 @@ user_pref("javascript.options.main_thread_stack_quota_cap", 8388608);
 ## What is different from upstream
 
 ### JIT / JavaScript
+- Baseline JIT compiles ALL web page JavaScript (removed interpreter-only restriction)
+- Ion optimizing compiler for internal browser scripts (web content Ion in progress)
 - Full PPC JIT backend (Baseline + Ion) with 35+ PPC-specific fixes
 - r28 register reserved for EnterJIT result pointer (NonAllocatableMask fix)
 - Native regexp with big-endian multi-character load fix (CanReadUnaligned)
