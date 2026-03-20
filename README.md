@@ -6,16 +6,29 @@ Built on the [UXP](https://github.com/ArcticFoxie/ArcticFox)/[Basilisk](https://
 
 ## Features
 
+- **Full Ion JIT** — optimizing JavaScript compiler for PPC with all optimizations enabled (GVN, inlining, PGO, range analysis, OSR)
+- **Baseline JIT** — fast JavaScript compilation with 15+ PPC-specific fixes
+- **Native regexp** — JIT-compiled regular expressions with big-endian fix
+- **H.264 video playback** via ffvpx with PPC AltiVec SIMD — 720p on iMac G5
+- **YouTube works** — homepage loads fully, videos play
 - **GPU-accelerated compositing** via CompositorOGL (OpenGL 1.5)
 - **OMTC (Off-Main-Thread Compositing)** for smoother UI
 - **GLSL 1.05 compatible shaders** with constant-index workarounds
 - **Non-NPOT GPU fixes** — buffer rotation and FBO workarounds for vintage GPUs
 - **G3/G4/G5 compatible** — runs on any PowerPC Mac with Tiger
-- Modern web standards on vintage hardware
 
 ## Download
 
-**[Latest release](https://github.com/danupsher/machfox-browser/releases)** — DMG and tarball available.
+**[Latest release](https://github.com/danupsher/machfox-browser/releases)** — DMG available.
+
+### Recommended user.js settings
+Place in your profile directory (`~/Library/Application Support/MachFox/Profiles/<profile>/user.js`):
+```
+user_pref("javascript.options.baselinejit", true);
+user_pref("javascript.options.ion", true);
+user_pref("javascript.options.native_regexp", true);
+user_pref("javascript.options.main_thread_stack_quota_cap", 8388608);
+```
 
 ## Hardware Tested
 
@@ -30,6 +43,18 @@ Built on the [UXP](https://github.com/ArcticFoxie/ArcticFox)/[Basilisk](https://
 
 ## What is different from upstream
 
+### JIT / JavaScript
+- Full PPC JIT backend (Baseline + Ion) with 35+ PPC-specific fixes
+- r28 register reserved for EnterJIT result pointer (NonAllocatableMask fix)
+- Native regexp with big-endian multi-character load fix (CanReadUnaligned)
+- outOfLineTruncateSlow implemented for PPC
+- MIn VM call disabled on PPC BE (genuine value-passing bug, zero practical impact)
+
+### Media
+- H.264 decode via ffvpx with PPC AltiVec SIMD acceleration
+- FFVPXRuntimeLinker fixed for XP_DARWIN (dlopen/dlsym)
+
+### Platform
 - Targets `powerpc-apple-darwin8` (Tiger) instead of Leopard/Snow Leopard
 - Cross-compiled from Linux using GCC 15.2.0 with ld64-linux linker
 - GPU compositing fixes for GLSL 1.05 / OpenGL 1.5 (Radeon 9600)
@@ -49,7 +74,7 @@ Cross-compiled from Linux — requires:
 - cctools-port (assembler, ar, ranlib)
 - MacOSX10.4u.sdk
 
-See `mozconfig` on the `tiger-ppc` branch for build configuration.
+See `mozconfig-g5` on the `tiger-ppc` branch for build configuration.
 
 ## Credits
 
