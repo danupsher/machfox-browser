@@ -128,7 +128,7 @@
           </description>
 #else
           <description class="text-blurb" id="communityDesc">
-			  PowerFox Browser by Jazzzny
+			  MachFox Browser — a PowerFox fork for Mac OS X Tiger
           </description>
           <description class="text-blurb" id="contributeDesc">
               This browser was made possible thanks to the efforts of dbsoft, Cameron Kaiser of TenFourFox, <label class="text-link" href="https://basilisk-browser.org/">the Basilisk Browser team</label>, and Mozilla developers. Learn <label class="text-link" useoriginprincipal="true" href="about:credits">who contributed</label> to this software.

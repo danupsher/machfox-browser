@@ -1,4 +1,4 @@
-# Tiger PPC cross-compile mozconfig — G5 target (-mcpu=970 -mno-powerpc64)
+# Tiger PPC cross-compile mozconfig — G5 target (-mcpu=970)
 # Uses GCC 15 + ld64 pipeline (fully local, no SSH)
 mk_add_options MOZ_OBJDIR=@TOPSRCDIR@/obj-ppc-g5
 
@@ -24,7 +24,11 @@ export TOOLCHAIN_PREFIX="$CROSS_TOOLCHAIN/powerpc-apple-darwin8-"
 export HOST_CC=gcc
 export HOST_CXX=g++
 
-# SDK/prefix flags — G5 optimized (-mcpu=970 -mno-powerpc64, enables fcfid etc)
+# CRITICAL: PPC_TARGET=g5 selects G5 runtime libs (libgcc.a, libstdc++.a etc)
+# and sets correct ppc970 Mach-O subtype. Without this, G3 libs get linked!
+export PPC_TARGET=g5
+
+# SDK/prefix flags — G5 optimized (-mcpu=970, enables fcfid etc)
 # Note: -isysroot is handled by the ld64 wrapper internally
 export CFLAGS="-mcpu=970 -mno-powerpc64 -D_DARWIN_C_SOURCE -DU_HAVE_TIMEZONE=0 -include /mnt/media/claude_cross/toolchain/include/tiger-compat.h -I$CROSS_PREFIX/include"
 export CXXFLAGS="-mcpu=970 -mno-powerpc64 -D_DARWIN_C_SOURCE -DU_HAVE_TIMEZONE=0 -include /mnt/media/claude_cross/toolchain/include/tiger-compat.h -I$CROSS_PREFIX/include"
@@ -41,7 +45,7 @@ ac_add_options --disable-crashreporter
 ac_add_options --disable-updater
 ac_add_options --disable-tests
 ac_add_options --disable-debug
-ac_add_options --enable-optimize="-O2 -mcpu=970 -mno-powerpc64"
+ac_add_options --enable-optimize="-O3 -mcpu=970 -mno-powerpc64 -ftree-vectorize -funroll-loops"
 ac_add_options --disable-jemalloc
 ac_add_options --disable-sandbox
 ac_add_options --disable-apple-media

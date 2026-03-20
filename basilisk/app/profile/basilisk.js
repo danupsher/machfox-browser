@@ -689,7 +689,7 @@ pref("plugin.state.flash", 2);
 pref("plugin.state.java", 1);
 
 // On ESR only, we re-enable all plugins instead of only loading Flash.
-pref("plugin.load_flash_only", false);
+pref("plugin.load_flash_only", true);
 
 #ifdef XP_MACOSX
 pref("browser.preferences.animateFadeIn", true);
@@ -1324,3 +1324,25 @@ pref("prompts.authentication_dialog_abuse_limit", 3);
 
 // Enable full GC WeakRef Support
 pref("javascript.options.weakrefs", true);
+pref("plugin.state.quicktime", 0);
+pref("plugin.disable_full_page_plugin_for_types", "application/pdf,video/mp4,video/quicktime,video/x-m4v,audio/mp4,audio/x-m4a");
+
+// MachFox PPC performance tuning
+// Increase script timeout - YouTube JS is heavy on slow PPC
+pref("dom.max_script_run_time", 30);
+// Cap frame rate to 30fps - saves CPU, 60fps is unrealistic on G5
+pref("layout.frame_rate", 30);
+// Reduce video frame queue - less memory pressure
+pref("media.video-queue.default-size", 3);
+// Suspend background video quickly
+pref("media.suspend-bkgnd-video.delay-ms", 3000);
+// Re-enable GC on memory pressure (basilisk.js disables it, bad for 1GB)
+pref("javascript.options.gc_on_memory_pressure", true);
+// Lower JS memory thresholds for 1GB RAM
+pref("javascript.options.mem.high_water_mark", 64);
+pref("javascript.options.mem.gc_high_frequency_high_limit_mb", 200);
+// Reduce media cache for low-RAM systems
+pref("media.cache_size", 256000);
+// Single content process
+pref("dom.ipc.processCount", 1);
+
